@@ -36,6 +36,24 @@ Houphouët-Boigny).
 4. Redéployez si besoin (un déploiement après l'ajout des intégrations
    suffit à récupérer les nouvelles variables).
 
+## Déploiement automatique via GitHub Actions
+
+Un workflow (`.github/workflows/deploy.yml`) déploie automatiquement sur
+Vercel à chaque push sur `main` (ou manuellement via l'onglet **Actions →
+Deploy to Vercel → Run workflow**).
+
+Pour l'activer, ajoutez ces secrets dans **Settings → Secrets and
+variables → Actions** du dépôt GitHub :
+
+- `VERCEL_TOKEN` : un token créé sur https://vercel.com/account/tokens
+- `VERCEL_ORG_ID` et `VERCEL_PROJECT_ID` : obtenus en liant le projet une
+  fois en local avec `npx vercel link --token=VOTRE_TOKEN`, puis en lisant
+  le fichier généré `.vercel/project.json`.
+
+Les intégrations Redis (KV) et Blob, ainsi que `ADMIN_PASSWORD`, doivent
+toujours être ajoutées une fois depuis le dashboard Vercel (étapes
+ci-dessus) — un token seul ne peut pas les créer.
+
 ## Développement local
 
 ```bash
